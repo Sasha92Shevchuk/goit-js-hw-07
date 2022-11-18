@@ -55,17 +55,20 @@ function onGalleryContainerClick(event) {
   instance.show();
 
   window.addEventListener("keydown", onEspCloseModal);
-  //   window.addEventListener('click', onClickCloseModal);
+  const modalBox = document.querySelector(".modal");
+  // console.log(modalBox);
+  modalBox.addEventListener("click", onClickCloseModal);
 
   function onEspCloseModal(e) {
     if (e.key === "Escape") {
       instance.close();
     }
   }
-  //   function onClickCloseModal(e) {
-  //     if (event.target.classList !== 'gallery__image') {
-  //       console.log('sdfg');
-  //       instance.close();
-  //     }
-  //   }
+  function onClickCloseModal(e) {
+    // console.log("click on modal");
+    instance.close(() => {
+      modalBox.removeEventListener("click", onClickCloseModal);
+      // console.log("слухач знято");
+    });
+  }
 }
