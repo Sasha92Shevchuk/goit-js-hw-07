@@ -1,7 +1,15 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
+// console.log(galleryItems);
+
+const galleryContainer = document.querySelector(".gallery");
+
+const cardsMarkup = createImageCardsMarkup(galleryItems);
+
+galleryContainer.insertAdjacentHTML("beforeend", cardsMarkup);
+
+galleryContainer.addEventListener("click", onGalleryContainerClick);
 
 function createImageCardsMarkup(galleries) {
   return galleries
@@ -12,4 +20,18 @@ function createImageCardsMarkup(galleries) {
 </a> `;
     })
     .join("");
+}
+
+function onGalleryContainerClick(event) {
+  event.preventDefault();
+  const isGalleryImageEl = event.target.classList.contains("gallery__image");
+
+  if (!isGalleryImageEl) {
+    return;
+  }
+
+  const lightbox = new SimpleLightbox(".gallery__item", {
+    captionsData: "alt",
+    captionDelay: 250,
+  });
 }
