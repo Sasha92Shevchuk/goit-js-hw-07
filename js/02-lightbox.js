@@ -9,7 +9,7 @@ const cardsMarkup = createImageCardsMarkup(galleryItems);
 
 galleryContainer.insertAdjacentHTML("beforeend", cardsMarkup);
 
-galleryContainer.addEventListener("click", onGalleryContainerClick);
+// galleryContainer.addEventListener("click", onGalleryContainerClick);
 
 function createImageCardsMarkup(galleries) {
   return galleries
@@ -22,16 +22,21 @@ function createImageCardsMarkup(galleries) {
     .join("");
 }
 
-function onGalleryContainerClick(event) {
-  event.preventDefault();
-  const isGalleryImageEl = event.target.classList.contains("gallery__image");
+const lightbox = new SimpleLightbox(".gallery__item", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
-  if (!isGalleryImageEl) {
-    return;
-  }
+// function onGalleryContainerClick(event) {
+//   event.preventDefault();
+//   const isGalleryImageEl = event.target.classList.contains("gallery__image");
 
-  const lightbox = new SimpleLightbox(".gallery__item", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-}
+//   if (!isGalleryImageEl) {
+//     return;
+//   }
+
+//   const lightbox = new SimpleLightbox(".gallery__item", {
+//     captionsData: "alt",
+//     captionDelay: 250,
+//   });
+// }
